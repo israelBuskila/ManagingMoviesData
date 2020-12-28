@@ -1,0 +1,20 @@
+<html>
+    <body>
+        <h1>Welcome To Movie Data Page</h1>
+        <li>ID: <%= data.id %></li>
+        <li>Name: <%= data.name %></li>
+        <li>Language: <%= data.language %></li>
+        <li>Genres:
+        <% data.genres.forEach(function(gen) { %>
+         <%= gen+"," %>
+        <% }) %></li>
+
+        <% if(data.image === undefined ) {null} else {Picture: %>
+            <img src= <%= data.image.medium %>><br/> 
+            <%  }  %>
+
+
+        <a href="http://localhost:3000/MenuPage">Back To Menu</a><br/>
+        <a href="http://localhost:3000/SearchMoviesPage">back</a>
+    </body>
+</html>
