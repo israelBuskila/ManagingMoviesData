@@ -20,7 +20,6 @@ router.get("/:id", async function (req, res, next) {
 });
 
 router.post("/updateUser", async function (req, res, next) {
-  let oldUser = await model.deleteUser(req.body);
   let newUser = {
     Username: req.body.Username,
     Password: req.body.Password,
@@ -28,7 +27,11 @@ router.post("/updateUser", async function (req, res, next) {
     NumOfTransaction: req.body.NumOfTransaction,
   };
 
+  let oldUser = await model.deleteUser(req.body);
   let store = await model.addUser(newUser);
+  if (req.body.Reset) {
+    let reset = await model.reset(newUser.Username);
+  }
   res.redirect("/UsersManagementPage");
 });
 
@@ -38,6 +41,10 @@ router.post("/saveUser", async function (req, res, next) {
     Password: req.body.Password,
     CreatedData: req.body.CreatedData,
     NumOfTransaction: req.body.NumOfTransaction,
+    numForToday: 0,
+    Year: 0,
+    Month: 0,
+    Day: 0,
   };
 
   let store = await model.addUser(newUser);

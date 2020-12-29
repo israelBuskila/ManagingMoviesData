@@ -28,7 +28,11 @@ router.post("/getlogindata", async function (req, res, next) {
   let isAuthenticted = false;
   let adminAuthenticted = false;
   let check = await usersModel.checkLogin(userLogin);
+  let user = await usersModel.getTransactionForToday(userLogin.Username);
+  req.session.numForToday = user.numForToday;
+  req.session.NumOfTransaction = user.NumOfTransaction;
 
+  console.log(user);
   if (check == "Admin") adminAuthenticted = true;
   else isAuthenticted = check;
 

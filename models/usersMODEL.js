@@ -69,7 +69,6 @@ exports.reset = async function (name) {
   let username = users.users.filter((x) => x.Username == name);
   let time = new Date();
   user = username[0];
-  console.log(user);
 
   user.Year = time.getFullYear();
   user.Month = time.getMonth() + 1;
@@ -110,6 +109,13 @@ exports.checkTransaction = async function (name) {
       return true;
     else return false;
   }
+};
+
+exports.getTransactionForToday = async function (name) {
+  let users = await dal.readFile();
+  let username = users.users.filter((x) => x.Username == name);
+  let user = username[0];
+  return user;
 };
 // model.checkTransaction("israel").then((x) => console.log(x));
 
