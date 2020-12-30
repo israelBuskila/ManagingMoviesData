@@ -56,11 +56,3 @@ exports.getMovieByGenre = async function (arrayOfGenres) {
   if (found.length > 0) return found;
   else return "not found!!";
 };
-
-// getMovie({
-//   name: "karate",
-//   language: "English",
-//   genres: ["Crim"],
-// }).then((x) => console.log(x));
-
-// getMovieByGenre(["Drama"]).then((x) => console.log(x));

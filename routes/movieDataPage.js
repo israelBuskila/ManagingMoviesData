@@ -23,6 +23,7 @@ router.get("/", async function (req, res, next) {
     res.redirect("/Login");
   }
 });
+
 router.get("/SearchMoviesPage", function (req, res, next) {
   res.redirect("/SearchMoviesPage");
 });

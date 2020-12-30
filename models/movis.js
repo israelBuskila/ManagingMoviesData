@@ -9,11 +9,6 @@ exports.getMovie = async function (search) {
   );
   if (movie.length > 0) return movie;
   else return "not found!!";
-  // for (var i = 0; i < search.genres.length; i++) {
-  //   return movie.filter((x) => {
-  //     return x.genres.some((y) => y == search.genres[i]);
-  //   });
-  // }
 };
 
 /*This function receives an array of genres and returns all movies 
@@ -34,11 +29,3 @@ exports.getMovieByGenre = async function (arrayOfGenres) {
   if (found.length > 0) return found;
   else return "not found!!";
 };
-
-// getMovie({
-//   name: "Boardwalk Empire",
-
-//   language: "English",
-//   genres: ["Drama", "Crime"],
-// }).then((x) => console.log(x));
-// getMovieByGenre(["War"]).then((x) => console.log(x));

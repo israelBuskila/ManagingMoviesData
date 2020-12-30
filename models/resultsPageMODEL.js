@@ -31,12 +31,3 @@ exports.rightColumn = async function (requirments) {
   });
   return dataJsonR;
 };
-
-// leftColumn({
-//   id: 22,
-//   name: "yaniv arad",
-//   language: "Hindi",
-//   genres: ["Documentary"],
-// }).then((x) => console.log(x));
-
-// rightColumn().then((x) => console.log(x));

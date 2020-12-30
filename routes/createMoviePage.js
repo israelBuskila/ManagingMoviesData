@@ -25,18 +25,6 @@ router.get("/", async function (req, res, next) {
 });
 
 router.post("/storeMovie", function (req, res, next) {
-  //   let gen = [
-  //     "War",
-  //     "Crime",
-  //     "Drama",
-  //     "Action",
-  //     "Sports",
-  //     "Comedy",
-  //     "Western",
-  //     "Animated",
-  //     "Adventure",
-  //     "Documentary",
-  //   ];
   console.log(req.body.language);
   let movie = {
     name: req.body.name,
@@ -60,8 +48,6 @@ router.post("/storeMovie", function (req, res, next) {
     userModel.updateTransaction(req.session.Username);
   if (req.session.authenticated) res.redirect("/MenuPage");
   else if (req.session.adminAuthenticated) res.redirect("/MenuPage");
-
-  //   res.redirect("MenuPage");
 });
 
 module.exports = router;
