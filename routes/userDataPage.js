@@ -15,22 +15,24 @@ router.get("/:id", async function (req, res, next) {
   let name = req.url.substring(n + 1).replace(/%20/g, " ");
 
   let user = await model.getOneUser(name);
-  console.log(user);
+
   res.render("UserDataPage", { data: user });
 });
 
 router.post("/updateUser", async function (req, res, next) {
+  let user = await model.getOneUser(req.body.Username);
   let newUser = {
     Username: req.body.Username,
     Password: req.body.Password,
     CreatedData: req.body.CreatedData,
     NumOfTransaction: req.body.NumOfTransaction,
+    LastLogin: user.LastLogin,
+    DailyOperations: user.DailyOperations,
   };
 
-  let oldUser = await model.deleteUser(req.body);
-  let store = await model.addUser(newUser);
+  model.updateUser(newUser);
   if (req.body.Reset) {
-    let reset = await model.reset(newUser.Username);
+    model.resetTransaction(req.body.Username);
   }
   res.redirect("/UsersManagementPage");
 });
@@ -41,13 +43,11 @@ router.post("/saveUser", async function (req, res, next) {
     Password: req.body.Password,
     CreatedData: req.body.CreatedData,
     NumOfTransaction: req.body.NumOfTransaction,
-    numForToday: 0,
-    Year: 0,
-    Month: 0,
-    Day: 0,
+    LastLogin: "0/0/0",
+    DailyOperations: req.body.NumOfTransaction,
   };
 
-  let store = await model.addUser(newUser);
+  model.addUser(newUser);
   res.redirect("/UsersManagementPage");
 });
 

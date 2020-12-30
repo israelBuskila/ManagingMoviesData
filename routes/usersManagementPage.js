@@ -21,11 +21,7 @@ router.get("/:id", function (req, res, next) {
     data.length - (password.length + " ".length + 1)
   );
 
-  let user = {
-    Username: name,
-    Password: password,
-  };
-  model.deleteUser(user);
+  model.deleteUser(name);
   res.redirect("/UsersManagementPage");
 });
 

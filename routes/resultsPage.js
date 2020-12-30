@@ -16,7 +16,6 @@ router.get("/", async function (req, res, next) {
       rightColumn = await model.rightColumn(leftColumn[0].genres);
     }
 
-    // console.log(rightColumn);
     res.render("ResultsPage", { dataL: leftColumn, dataR: rightColumn });
   } else {
     res.redirect("/Login");

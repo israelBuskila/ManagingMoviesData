@@ -2,7 +2,7 @@ const jsonfile = require("jsonfile");
 
 exports.readFile = function () {
   return new Promise((resolve) => {
-    jsonfile.readFile(__dirname + "/Users.json", function (err, data) {
+    jsonfile.readFile(__dirname + "/../data/Users.json", function (err, data) {
       if (err) throw err;
       else resolve(data);
     });
@@ -11,7 +11,7 @@ exports.readFile = function () {
 
 exports.wraiteFile = async function (newUser) {
   let user = await newUser;
-  jsonfile.writeFile(__dirname + "/Users.json", user, function (err) {
+  jsonfile.writeFile(__dirname + "/../data/Users.json", user, function (err) {
     if (err) throw err;
     else console.log("wraiteFile -- Users -- > ok");
   });

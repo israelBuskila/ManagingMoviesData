@@ -7,10 +7,10 @@
          Password:   <input name="Password" type="text" value= <%= data.Password %>><br/> 
          Created Data:   <input name="CreatedData" type="text" value= <%= data.CreatedData %>><br/> 
          Num Of Transaction:   <input name="NumOfTransaction" type="text" value= <%= data.NumOfTransaction %>><br/> 
-         Number Of Actions: <%= data.numForToday %><br/>
+         Daily Operation: <%= data.DailyOperation %><br/>
          Reset Transaction: <input type="checkbox" name="Reset"><br/>
          <input type="submit" value="Update"></form>
-         <%  } else if(data === "save"){ %>
+         <%  } else { %>
          
 
             <form action="/UserDataPage/saveUser" method="POST">

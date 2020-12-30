@@ -1,17 +1,30 @@
 var express = require("express");
 var router = express.Router();
 const model = require("../models/resultsPageMODEL");
+const userModel = require("../models/usersMODEL");
 
-router.get("/", function (req, res, next) {
-  if (req.session.authenticated || req.session.adminAuthenticated) {
+router.get("/", async function (req, res, next) {
+  let date = new Date();
+  let user = await userModel.getOneUser(req.session.Username);
+  if (req.session.adminAuthenticated) {
     res.render("MovieDataPage", {});
+  } else if (req.session.authenticated) {
+    if (
+      user.LastLogin !==
+      date.getFullYear() + "/" + date.getMonth() + "/" + date.getDate()
+    ) {
+      userModel.resetTransaction(user.Username);
+
+      res.render("MovieDataPage", {});
+    } else if (parseInt(user.DailyOperations) > 0) {
+      res.render("MovieDataPage", {});
+    } else res.redirect("/Login");
   } else {
     res.redirect("/Login");
   }
-
-  router.get("/SearchMoviesPage", function (req, res, next) {
-    res.redirect("/SearchMoviesPage");
-  });
+});
+router.get("/SearchMoviesPage", function (req, res, next) {
+  res.redirect("/SearchMoviesPage");
 });
 
 router.get("/:id", async function (req, res, next) {
@@ -28,6 +41,8 @@ router.get("/:id", async function (req, res, next) {
   let movie = await model.leftColumn(requirments);
 
   res.render("MovieDataPage", { data: movie[0] });
+  if (req.session.Username != "Admin")
+    userModel.updateTransaction(req.session.Username);
 });
 
 module.exports = router;

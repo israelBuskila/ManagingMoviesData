@@ -1,10 +1,24 @@
 var express = require("express");
 var router = express.Router();
 const model = require("../models/newMoviesMODEL");
+const userModel = require("../models/usersMODEL");
 
-router.get("/", function (req, res, next) {
-  if (req.session.authenticated || req.session.adminAuthenticated) {
+router.get("/", async function (req, res, next) {
+  let date = new Date();
+  let user = await userModel.getOneUser(req.session.Username);
+  if (req.session.adminAuthenticated) {
     res.render("CreateMoviePage", {});
+  } else if (req.session.authenticated) {
+    if (
+      user.LastLogin !==
+      date.getFullYear() + "/" + date.getMonth() + "/" + date.getDate()
+    ) {
+      userModel.resetTransaction(user.Username);
+
+      res.render("CreateMoviePage", {});
+    } else if (parseInt(user.DailyOperations) > 0) {
+      res.render("CreateMoviePage", {});
+    } else res.redirect("/Login");
   } else {
     res.redirect("/Login");
   }
@@ -42,8 +56,10 @@ router.post("/storeMovie", function (req, res, next) {
   if (req.body.Documentary) movie.genres.push("Documentary");
 
   model.createMovie(movie);
+  if (req.session.Username != "Admin")
+    userModel.updateTransaction(req.session.Username);
   if (req.session.authenticated) res.redirect("/MenuPage");
-  else if (req.session.adminAuthenticated) res.redirect("/MenuAdminPage");
+  else if (req.session.adminAuthenticated) res.redirect("/MenuPage");
 
   //   res.redirect("MenuPage");
 });
