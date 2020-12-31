@@ -1,6 +1,6 @@
 <html>
     <body>
-        <h1>Welcome To Results Page</h1>
+        <h1>Results Page</h1>
         <table border="1">
             <tr>
                 <th>Name Of The Movie</th>
@@ -14,7 +14,7 @@
                 <% dataR.forEach(function(movieR) { %>
             <tr>  
                     <td></td>
-                    <td ><a href="./MovieDataPage/id=<%= movieR.name %>  <%= movieR.language %>"><%= movieR.name %></a></td>
+                    <td ><a href="./id=<%= movieR.name %>  <%= movieR.language %>"><%= movieR.name %></a></td>
                 </tr> 
                 <% }) %>
             <% }) %>

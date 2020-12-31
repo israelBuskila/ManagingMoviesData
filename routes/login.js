@@ -40,11 +40,11 @@ router.post("/getlogindata", async function (req, res, next) {
       } else if (parseInt(user.DailyOperations) > 0) {
         req.session.authenticated = true;
         res.redirect("/MenuPage");
-      } else res.render("Login", {});
+      } else res.render("Login", { data: "incorrect" });
     } else if (adminAuthenticted) {
       req.session.adminAuthenticated = true;
       res.redirect("/MenuPage");
-    } else res.render("Login", {});
+    } else res.render("Login", { data: "incorrect" });
   }
 });
 

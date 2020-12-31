@@ -29,8 +29,14 @@ exports.getOneUser = async function (username) {
 };
 
 exports.checkLogin = async function (userLogin) {
+  // if (userLogin.Password == 0 || user.Username.length == 0)
+  //   console.log("incorrect");
   let getUser = await model.getOneUser(userLogin.Username);
-  if (getUser.Username == "Admin" && getUser.Password == userLogin.Password)
+  if (typeof getUser === "undefined") return false;
+  else if (
+    getUser.Username == "Admin" &&
+    getUser.Password == userLogin.Password
+  )
     return "Admin";
   else if (getUser && getUser.Password == userLogin.Password) {
     return true;
@@ -49,7 +55,7 @@ exports.resetTransaction = async function (username) {
   let user = await model.getOneUser(username);
   user.LastLogin =
     date.getFullYear() + "/" + date.getMonth() + "/" + date.getDate();
-  user.DailyOperations = user.NumOfTransactions;
+  user.DailyOperations = user.NumOfTransaction;
   model.updateUser(user);
 };
 

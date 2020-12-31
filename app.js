@@ -12,9 +12,6 @@ var menuPageRouter = require("./routes/menuPage");
 var searchMoviesPageRouter = require("./routes/searchMoviesPage");
 var createMoviePageRouter = require("./routes/createMoviePage");
 var usersManagementPageRouter = require("./routes/usersManagementPage");
-var resultsPageRouter = require("./routes/resultsPage");
-var movieDataPageRouter = require("./routes/movieDataPage");
-var userDataPage = require("./routes/userDataPage");
 
 var app = express();
 
@@ -36,9 +33,6 @@ app.use("/MenuPage", menuPageRouter);
 app.use("/SearchMoviesPage", searchMoviesPageRouter);
 app.use("/CreateMoviePage", createMoviePageRouter);
 app.use("/UsersManagementPage", usersManagementPageRouter);
-app.use("/ResultsPage", resultsPageRouter);
-app.use("/MovieDataPage", movieDataPageRouter);
-app.use("/UserDataPage", userDataPage);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

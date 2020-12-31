@@ -1,19 +1,19 @@
 <html>
     <body>
-        <h1>Welcome To User Data Page</h1>
+        <h1>User Data Page</h1>
         <% if(data != "save" ) { %>
-        <form action="/UserDataPage/updateUser" method="POST">
+        <form action="/UsersManagementPage/updateUser" method="POST">
          Username:  <input name="Username" type="text" value= <%= data.Username %>><br/>   
          Password:   <input name="Password" type="text" value= <%= data.Password %>><br/> 
          Created Data:   <input name="CreatedData" type="text" value= <%= data.CreatedData %>><br/> 
          Num Of Transaction:   <input name="NumOfTransaction" type="text" value= <%= data.NumOfTransaction %>><br/> 
-         Daily Operation: <%= data.DailyOperation %><br/>
+         Daily Operations: <%= data.DailyOperations %><br/>
          Reset Transaction: <input type="checkbox" name="Reset"><br/>
          <input type="submit" value="Update"></form>
          <%  } else { %>
          
 
-            <form action="/UserDataPage/saveUser" method="POST">
+            <form action="/UsersManagementPage/saveUser" method="POST">
                 Username:  <input name="Username" type="text" value= <%= data.Username %>><br/>   
                 Password:   <input name="Password" type="text" value= <%= data.Password %>><br/> 
                 Created Data:   <input name="CreatedData" type="text" value= <%= data.CreatedData %>><br/> 

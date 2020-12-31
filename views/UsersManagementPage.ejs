@@ -1,12 +1,12 @@
-<htmkl>
+<html>
     <body>
-        <h1>Welcome To Users Management Page</h1>
+        <h1>Users Management Page</h1>
         <ol>
         <% data.forEach(function(user) { %>
-            <li><%= user.Username %> <a href="./UsersManagementPage/id=<%= user.Username %>  <%= user.Password %>">delete</a>     <a href="./UserDataPage/id=<%= user.Username %> ">update</a></li>
+            <li><%= user.Username %> <a href="./UsersManagementPage/deleteUser/id=<%= user.Username %>  <%= user.Password %>">delete</a>     <a href="./UsersManagementPage/UserDataPage/id=<%= user.Username %> ">update</a></li>
             <% }) %>
         </ol><br/>
         <a href="./MenuPage">Back</a><br/>
-        <a href="./UserDataPage">Add New</a>
+        <a href="./UsersManagementPage/addNewUser">Add New</a>
     </body>
-</htmkl>
+</html>
