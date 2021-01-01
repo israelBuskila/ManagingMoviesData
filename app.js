@@ -6,9 +6,6 @@ var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 
 var loginRouter = require("./routes/login");
-
-var menuPageRouter = require("./routes/menuPage");
-
 var searchMoviesPageRouter = require("./routes/searchMoviesPage");
 var createMoviePageRouter = require("./routes/createMoviePage");
 var usersManagementPageRouter = require("./routes/usersManagementPage");
@@ -28,8 +25,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", loginRouter);
-app.use("/MenuPage", menuPageRouter);
-
 app.use("/SearchMoviesPage", searchMoviesPageRouter);
 app.use("/CreateMoviePage", createMoviePageRouter);
 app.use("/UsersManagementPage", usersManagementPageRouter);

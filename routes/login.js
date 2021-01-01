@@ -48,4 +48,14 @@ router.post("/getlogindata", async function (req, res, next) {
   }
 });
 
+router.get("/MenuPage", async function (req, res, next) {
+  if (req.session.adminAuthenticated) {
+    res.render("MenuPage", { data: "admin" });
+  } else if (req.session.authenticated) {
+    res.render("MenuPage", { data: "user" });
+  } else {
+    res.redirect("/Login");
+  }
+});
+
 module.exports = router;
