@@ -1,3 +1,1 @@
-# ManagingMoviesData
-
-israelBuskila/Managin-Movies-Data
+Client-server architecture
