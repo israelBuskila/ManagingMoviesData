@@ -1,3 +1,3 @@
 Client-server architecture
 
-[![architecture.png](https://i.postimg.cc/zf6ggJH2/architecture.png)](https://postimg.cc/7C1hvrVS)
+[![architecture.png](https://github.com/israelBuskila/ManagingMoviesData/blob/master/architecture.PNG)
