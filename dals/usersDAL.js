@@ -9,8 +9,8 @@ exports.readFile = function () {
   });
 };
 
-exports.wraiteFile = async function (newUser) {
-  let user = await newUser;
+exports.wraiteFile = function (newUser) {
+  let user =  newUser;
   jsonfile.writeFile(__dirname + "/../data/Users.json", user, function (err) {
     if (err) throw err;
     else console.log("wraiteFile -- Users -- > ok");
